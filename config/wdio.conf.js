@@ -1,7 +1,7 @@
 import allure from 'allure-commandline';
 import allureReporter from '@wdio/allure-reporter';
-import { TimelineService } from 'wdio-timeline-reporter/timeline-service.js'
-import moment from 'moment';
+import { param } from './ENVParamaters.js'
+
 
 export const config = {
     //
@@ -27,7 +27,7 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        '../test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -70,6 +70,7 @@ export const config = {
     logLevel: 'silent',
 
     reporters: [
+        // [FailureLogger, {}],
         ['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
@@ -222,9 +223,9 @@ export const config = {
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
     beforeTest: async function (test, context) {
-        await browser.url("https://www.hyrtutorials.com/p/add-padding-to-containers.html");
+        await browser.url(param.getURL());
         await browser.maximizeWindow();
-        await browser.scroll(0, 1000)
+        
     },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling

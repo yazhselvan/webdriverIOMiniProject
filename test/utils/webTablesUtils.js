@@ -8,6 +8,7 @@ export class webTablesUtils{
         return contactText
     }
 
+    //get all Values from web Table
     static async readContactsfromWebTable(){ 
         var rows = await $$("//table[@id='contactList']/tbody/tr");
         var contacts = [];
